@@ -53,15 +53,3 @@ func (b *Board) InsertPlayerMoveAt(p Player, index int) {
 func (b *Board) IsSlotEmpty(index int) bool {
 	return b.Slots[index] == Empty
 }
-
-func (b *Board) GetAllEmptySlots() []int {
-	emptySlots := make([]int, 0, len(b.Slots))
-
-	for index, slot := range b.Slots {
-		if slot == Empty {
-			emptySlots = append(emptySlots, index)
-		}
-	}
-
-	return emptySlots
-}
