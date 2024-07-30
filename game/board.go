@@ -3,15 +3,15 @@ package game
 import "fmt"
 
 type Board struct {
-	Slots [9]Player
+	slots [9]Player
 }
 
 func NewBoard() Board {
-	return Board{Slots: [9]Player{Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty}}
+	return Board{slots: [9]Player{Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty}}
 }
 
 func (b *Board) Print() {
-	for index, value := range b.Slots {
+	for index, value := range b.slots {
 		if value == Empty {
 			fmt.Print(index + 1)
 		} else {
@@ -32,7 +32,7 @@ func (b *Board) IsWinner(p Player) bool {
 		return false
 	}
 
-	slots := b.Slots
+	slots := b.slots
 
 	return (slots[0] == p && slots[1] == p && slots[2] == p) ||
 		(slots[3] == p && slots[4] == p && slots[5] == p) ||
@@ -47,9 +47,9 @@ func (b *Board) IsWinner(p Player) bool {
 }
 
 func (b *Board) InsertPlayerMoveAt(p Player, index int) {
-	b.Slots[index] = p
+	b.slots[index] = p
 }
 
 func (b *Board) IsSlotEmpty(index int) bool {
-	return b.Slots[index] == Empty
+	return b.slots[index] == Empty
 }
