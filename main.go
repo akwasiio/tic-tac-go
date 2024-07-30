@@ -13,15 +13,22 @@ func main() {
 	for {
 		board.Print()
 		fmt.Printf("\n%s's turn. Select slot: ", currentPlayer)
+
 		var index int
-		_, err := fmt.Scan(&index)
-		if err != nil {
-			log.Fatal(err)
+		for {
+			_, err := fmt.Scan(&index)
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			if board.IsSlotEmpty(index - 1) {
+				break
+			} else {
+				fmt.Printf("Slot %d has been taken! Pick another slot: ", index)
+			}
 		}
 
-		if board.IsSlotEmpty(index) {
-			board.InsertPlayerMoveAt(currentPlayer, index-1)
-		} // handle when slot is not empty
+		board.InsertPlayerMoveAt(currentPlayer, index-1)
 
 		if board.IsWinner(currentPlayer) {
 			fmt.Printf("%s won!", currentPlayer)
